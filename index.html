@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Daniel Eglau</title>
+        <meta charset="UTF-8" />
+        <link href="bootstrap.min.css" rel="stylesheet">
+        <link href="custom.css" rel="stylesheet">
+        <script id="previewTmpl" type="text/x-jquery-tmpl">
+            <div id="ib-img-preview" class="ib-preview">
+                <img src="${src}" alt="" class="ib-preview-img"/>
+                <span class="ib-preview-descr" style="display:none;">${description}</span>
+                <div class="ib-nav" style="display:none;">
+                    <span class="ib-nav-prev">Previous</span>
+                    <span class="ib-nav-next">Next</span>
+                </div>
+                <span class="ib-close" style="display:none;">Close Preview</span>
+                <div class="ib-loading-large" style="display:none;">Loading...</div>
+            </div>
+        </script>
+        <script id="contentTmpl" type="text/x-jquery-tmpl">
+            <div id="ib-content-preview" class="ib-content-preview">
+                <div class="ib-teaser" style="display:none;">{{html teaser}}</div>
+                <div class="ib-content-full" style="display:none;">{{html content}}</div>
+                <span class="ib-close" style="display:none;">Close Preview</span>
+            </div>
+        </script>
+    </head>
+    <body onload="$(window).resize();">
+        <div id="bigimage">
+            <div id="imagecontent">
+                <div id="title">
+                    <h1>Hi!</h1>
+                </div>
+                <div id="intro">
+                    <p>My name is Daniel Eglau.</p>
+                    <p>I design things.</p>
+                </div>
+            </div>
+        </div>
+        <div id="ib-main-wrapper" class="ib-main-wrapper">
+            <div class="ib-main">
+                <a href="#">
+                    <img src="images/thumbs/1.jpg" data-largesrc="images/large/1.jpg" alt="image01"/>
+                    <span>Crabbed Age and Youth</span>
+                </a>
+                <a href="#">
+                    <img src="images/thumbs/2.jpg" data-largesrc="images/large/2.jpg" alt="image02"/>
+                    <span>Cannot live together</span>
+                </a>
+                <a href="#">
+                    <img src="images/thumbs/2.jpg" data-largesrc="images/large/2.jpg" alt="image02"/>
+                    <span>Cannot live together</span>
+                </a>
+                <a href="#">
+                    <img src="images/thumbs/2.jpg" data-largesrc="images/large/2.jpg" alt="image02"/>
+                    <span>Cannot live together</span>
+                </a>
+                <a href="#">
+                    <img src="images/thumbs/2.jpg" data-largesrc="images/large/2.jpg" alt="image02"/>
+                    <span>Cannot live together</span>
+                </a>
+                <a href="#">
+                    <img src="images/thumbs/2.jpg" data-largesrc="images/large/2.jpg" alt="image02"/>
+                    <span>Cannot live together</span>
+                </a>
+                <a href="#" class="ib-content">
+                    <div class="ib-teaser">
+                        <h2>Welcome <span>Howdy, Stranger</span></h2>
+                    </div>
+                    <div class="ib-content-full">
+                        <!-- Some content -->
+                    </div>
+                </a>
+                ...
+            </div>
+        </div>
+        <div class="container">
+            <div class="row textrow">
+                <div class="col-xs-12 col-md-6">
+                    <h2>What I can do:</h2>
+                    <ul>
+                        <li>Draw shit</li>
+                        <li>Cut shit</li>
+                        <li>Fix tshirts</li>
+                        <li>Make fancy dresses</li>
+                    </ul>
+                </div>
+                <div class="col-xs-6 col-md-6">
+                    <h2>Contact:</h2>
+                    <p>If you want to get in touch or just say hello, you can</p>
+                    <p>email</p>
+                    <p>or call</p>
+                    <p>my current timezone is UTC+1</p>
+                </div>
+            </div>
+        </div>
+        <div id="footer" class="container">
+            <p>Some footer here</p>
+        </div>
+        <script src="./scripts/jquery-2.0.3.min.js" type="text/javascript"></script>
+        <script src="./scripts/index.js" type="text/javascript"></script>
+    </body>
+</html>
