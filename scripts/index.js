@@ -31,6 +31,7 @@ $(function() {
             $gridItems.addClass('gridItem');
             $gridItems.bind('click.ibTemplate', function(ev) {
                 openItem($(this));
+                return false;
             });
         },
 
@@ -47,9 +48,9 @@ $(function() {
         },
 
         loadImgPreview = function($item, callback) {
-            var largeSrc        = $item.children('img').data('largesrc'),
+            var largeSrc = $item.children('img').data('largesrc'),
                 // description     = $item.children('span').text(),
-                largeImageData  = {
+                largeImageData = {
                     src : largeSrc,
                     // description : description
                 };
@@ -87,7 +88,7 @@ $(function() {
                 }, 500, 'easeOutExpo', function() {
                     $(this).animate({
                         height  : $(window).height(),
-                        top     : 0
+                        top     : $(document).scrollTop()
                     }, 400, function() {
                         var $this   = $(this);
                         $this.find('span.ib-close').show()
