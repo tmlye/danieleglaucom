@@ -62,7 +62,7 @@ $(function() {
                     $('#previewTmpl').tmpl(largeImageData).insertAfter($gridWrapper);
                 } else {
                     $('#ib-img-preview').children('img.ib-preview-img')
-                                        .attr( 'src', largeSrc )
+                                        .attr('src', largeSrc)
                                         .end();
                                         // .find('span.ib-preview-descr')
                                         // .text( description );
@@ -90,7 +90,7 @@ $(function() {
                         top     : 0
                     }, 400, function() {
                         var $this   = $(this);
-                        $this.find('span.ib-preview-descr, span.ib-close').show()
+                        $this.find('span.ib-close').show()
                         if (imgItemsCount > 1) {
                             $this.find('div.ib-nav').show();
                         }
@@ -104,7 +104,6 @@ $(function() {
                 if (!hasImgPreview) {
                     initImgPreviewEvents();
                 }
-
             });
     },
 
@@ -180,7 +179,7 @@ $(function() {
         isAnimating = true;
 
         var $item = $gridItems.eq(current);
-        $('#ib-img-preview').find('span.ib-preview-descr, div.ib-nav, span.ib-close')
+        $('#ib-img-preview').find('div.ib-nav, span.ib-close')
                         .hide()
                         .end()
                         .animate({
