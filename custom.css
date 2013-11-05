@@ -53,25 +53,6 @@ a:hover {
     font-size:18px;
 }
 
-.ib-top{
-    background: #fff;
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    z-index: 10;
-    height: 40px;
-}
-.ib-top h1{
-    color: #333;
-    font-size: 20px;
-    line-height: 40px;
-    padding: 0 10px;
-}
-.ib-top h1 span{
-    color: #555;
-    font-size: 12px;
-}
 #grid-wrapper.container {
     max-width:none;
     width: 100%;
@@ -89,8 +70,7 @@ a:hover {
     height: 310px;
     position: relative;
     overflow: hidden;
-    background: #fff url(../images/thumb_bg.jpg) no-repeat center center;
-    background-size: 110% 110%;
+    background: #000;
     -webkit-transition: all 0.2s ease-in-out;
     -moz-transition: all 0.2s ease-in-out;
     -o-transition: all 0.2s ease-in-out;
@@ -112,24 +92,24 @@ a:hover {
     display: none;
 }
 .grid a img{
-    opacity: 0.95;
-    -webkit-transition: all 0.2s ease-in-out;
-    -moz-transition: all 0.2s ease-in-out;
-    -o-transition: all 0.2s ease-in-out;
-    -ms-transition: all 0.2s ease-in-out;
-    transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 // Description in thumbnail
-.grid > a > span{
+.desc {
+    z-index: 1;
     display: block;
     position: absolute;
     width: 100%;
     height: 20px;
     line-height: 22px;
     text-align: center;
-    font-size: 11px;
-    color: #000;
-    bottom: -20px;
+    /* font-size: 11px; */
+    font-size: 32px;
+    /* color: #000; */
     left: 0px;
     text-shadow: 1px 1px 1px rgba(0,0,0,0.4);
     -webkit-transition: all 0.2s ease-in-out;
@@ -138,16 +118,29 @@ a:hover {
     -ms-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
 }
-.grid a:hover > span{
-    bottom: 0px;
+a:hover .desc {
+    font-size: 32px;
+    text-align: center;
+    bottom: 20px;
 }
 .grid a:hover img{
-    opacity: 0.8;
+    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    opacity: 0.5;
+    -moz-transform: scale(1.5);
+    -webkit-transform: scale(1.5);
+    -o-transform: scale(1.5);
+    -ms-transform: scale(1.5);
+    transform: scale(1.5);
 }
 .grid a:hover{
     background-size: 100% 100%;
 }
 .ib-preview{
+    z-index: 1;
     overflow: hidden;
     position: absolute;
     top: 40px;
