@@ -3,7 +3,7 @@ $(document).ready(function() {
 });
 
 $(window).resize(function() {
-    $("#grid-wrapper").css("padding-top", $("#bigimage").outerHeight());
+    $("#grid-wrapper").css("margin-top", $("#bigimage").outerHeight());
     $('#ib-img-preview').css({
         width : $(window).width(),
         height : $(window).height()
@@ -19,11 +19,16 @@ $(window).scroll(function() {
 });
 
 $(function() {
-    var $gridWrapper = $("#grid-wrapper");
+    var $gridWrapper = $('#grid-wrapper');
+    var $container = $('#grid-wrapper');
+
+    $container.isotope({
+        itemSelector: '.grid-item'
+    });
 
     Template = (function() {
         current = -1,
-        $gridItems = $gridWrapper.find('div.grid > a'),
+        $gridItems = $gridWrapper.find('div.grid-item > a'),
         imgItemsCount = $gridItems.length,
         isAnimating = false,
 

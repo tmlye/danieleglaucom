@@ -53,18 +53,18 @@ a:hover {
     font-size:18px;
 }
 
-#grid-wrapper.container {
+#grid-wrapper.isotope {
     max-width:none;
     width: 100%;
     overflow: hidden;
     outline: none;
-    padding-top:800px;
     margin:0px;
-    padding-left:20px;
-    padding-right:20px;
+    margin-top:800px;
+    padding-left:5px;
+    padding-right:5px;
 }
 
-.grid a{
+.grid-item a{
     float: left;
     width: 310px;
     height: 310px;
@@ -76,22 +76,22 @@ a:hover {
     -o-transition: all 0.2s ease-in-out;
     -ms-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
-    margin:20px;
+    margin:5px;
 }
-.grid a.ib-loading,
-.grid a.ib-loading:hover{
+.grid-item a.ib-loading,
+.grid-item a.ib-loading:hover{
     background: #fff url(../images/ajax-loader.gif) no-repeat center center;
     background-size: 31px 31px;
 }
-.grid a.ib-loading img,
-.grid a.ib-loading:hover img{
+.grid-item a.ib-loading img,
+.grid-item a.ib-loading:hover img{
     opacity: 0.5;
 }
-.grid > a.ib-loading > span,
-.grid a.ib-loading > span{
+.grid-item > a.ib-loading > span,
+.grid-item a.ib-loading > span{
     display: none;
 }
-.grid a img{
+.grid-item a img{
     -webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out;
@@ -100,7 +100,7 @@ a:hover {
 }
 // Description in thumbnail
 .desc {
-    z-index: 1;
+    z-index: 3;
     display: block;
     position: absolute;
     width: 100%;
@@ -123,7 +123,7 @@ a:hover .desc {
     text-align: center;
     bottom: 20px;
 }
-.grid a:hover img{
+.grid-item a:hover img{
     transition: all 0.3s ease-in-out;
     -webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
@@ -136,11 +136,11 @@ a:hover .desc {
     -ms-transform: scale(1.5);
     transform: scale(1.5);
 }
-.grid a:hover{
+.grid-item a:hover{
     background-size: 100% 100%;
 }
 .ib-preview{
-    z-index: 1;
+    z-index: 23;
     overflow: hidden;
     position: absolute;
     top: 40px;
@@ -215,4 +215,54 @@ a:hover .desc {
     margin-top:50px;
     text-align:center;
     font-size:16px;
+}
+
+/**** Isotope Filtering ****/
+
+.isotope-item {
+  z-index: 2;
+}
+
+.isotope-hidden.isotope-item {
+  pointer-events: none;
+  z-index: 1;
+}
+
+/**** Isotope CSS3 transitions ****/
+
+.isotope,
+.isotope .isotope-item {
+  -webkit-transition-duration: 0.8s;
+     -moz-transition-duration: 0.8s;
+      -ms-transition-duration: 0.8s;
+       -o-transition-duration: 0.8s;
+          transition-duration: 0.8s;
+}
+
+.isotope {
+  -webkit-transition-property: height, width;
+     -moz-transition-property: height, width;
+      -ms-transition-property: height, width;
+       -o-transition-property: height, width;
+          transition-property: height, width;
+}
+
+.isotope .isotope-item {
+  -webkit-transition-property: -webkit-transform, opacity;
+     -moz-transition-property:    -moz-transform, opacity;
+      -ms-transition-property:     -ms-transform, opacity;
+       -o-transition-property:      -o-transform, opacity;
+          transition-property:         transform, opacity;
+}
+
+/**** disabling Isotope CSS3 transitions ****/
+
+.isotope.no-transition,
+.isotope.no-transition .isotope-item,
+.isotope .isotope-item.no-transition {
+  -webkit-transition-duration: 0s;
+     -moz-transition-duration: 0s;
+      -ms-transition-duration: 0s;
+       -o-transition-duration: 0s;
+          transition-duration: 0s;
 }
