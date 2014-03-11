@@ -98,30 +98,30 @@ a:hover {
     -ms-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
 }
-// Description in thumbnail
-.desc {
-    z-index: 3;
-    display: block;
+
+.grid-item a .desc{
+    bottom: -60px;
+    text-align: center;
     position: absolute;
     width: 100%;
-    height: 20px;
-    line-height: 22px;
+    line-height: 27px;
     text-align: center;
-    /* font-size: 11px; */
-    font-size: 32px;
-    /* color: #000; */
-    left: 0px;
+    font-size: 28px;
+    color: #D7D0C7;
     text-shadow: 1px 1px 1px rgba(0,0,0,0.4);
-    -webkit-transition: all 0.2s ease-in-out;
-    -moz-transition: all 0.2s ease-in-out;
-    -o-transition: all 0.2s ease-in-out;
-    -ms-transition: all 0.2s ease-in-out;
-    transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
 }
-a:hover .desc {
-    font-size: 32px;
-    text-align: center;
+.grid-item a:hover .desc{
     bottom: 20px;
+    -webkit-transition: all 0.8s ease;
+    -moz-transition: all 0.8s ease;
+    -o-transition: all 0.8s ease;
+    -ms-transition: all 0.8s ease;
+    transition: all 0.8s ease;
 }
 .grid-item a:hover img{
     transition: all 0.3s ease-in-out;
@@ -209,6 +209,11 @@ a:hover .desc {
     -webkit-border-radius: 10px;
     border-radius: 10px 10px 10px 10px;
     opacity: 0.9;
+}
+
+.disable-scroll {
+    height: 100%;
+    overflow: hidden;
 }
 
 #footer {
