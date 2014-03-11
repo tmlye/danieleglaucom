@@ -100,28 +100,29 @@ a:hover {
 }
 
 .grid-item a .desc{
+    position: absolute;
+    left: 0px;
     bottom: -60px;
     text-align: center;
-    position: absolute;
     width: 100%;
     line-height: 27px;
     text-align: center;
     font-size: 28px;
     color: #D7D0C7;
     text-shadow: 1px 1px 1px rgba(0,0,0,0.4);
-    -webkit-transition: all 0.3s ease;
-    -moz-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
-    -ms-transition: all 0.3s ease;
-    transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 .grid-item a:hover .desc{
     bottom: 20px;
-    -webkit-transition: all 0.8s ease;
-    -moz-transition: all 0.8s ease;
-    -o-transition: all 0.8s ease;
-    -ms-transition: all 0.8s ease;
-    transition: all 0.8s ease;
+    -webkit-transition: all 0.8s ease-in-out;
+    -moz-transition: all 0.8s ease-in-out;
+    -o-transition: all 0.8s ease-in-out;
+    -ms-transition: all 0.8s ease-in-out;
+    transition: all 0.8s ease-in-out;
 }
 .grid-item a:hover img{
     transition: all 0.3s ease-in-out;
