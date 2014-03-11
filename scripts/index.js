@@ -62,6 +62,8 @@ $(function() {
             // preload large image
             $item.addClass('ib-loading');
             preloadImage(largeSrc, function() {
+                // disable scrolling
+                $('body').addClass('disable-scroll');
                 $item.removeClass('ib-loading');
                 var hasImgPreview   = ($('#ib-img-preview').length > 0);
                 if (!hasImgPreview){
@@ -140,6 +142,7 @@ $(function() {
             })
         });
     },
+
     // navigate the image items in fullscreen mode
     navigate = function(dir) {
         if(isAnimating) return false;
@@ -180,6 +183,7 @@ $(function() {
             isAnimating = false;
         });
     },
+
     closeImgPreview = function() {
         if( isAnimating ) return false;
         isAnimating = true;
@@ -199,7 +203,9 @@ $(function() {
                                     $(this).fadeOut(function() {isAnimating = false;});
                             } );
                         });
+        $('body').removeClass('disable-scroll');
     },
+
     getImageDim = function(src) {
         var img = new Image();
         img.src = src;
@@ -237,8 +243,6 @@ $(function() {
 
 var grid = {
     init:function() {
-
     }
-
 }
 
