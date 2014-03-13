@@ -1,13 +1,9 @@
 $(document).ready(function() {
-    $(window).resize();
+    $(window).resize(); // TODO: remove this?
 });
 
-$(window).resize(function() {
-    $("#grid-wrapper").css("margin-top", $("#bigimage").outerHeight());
-    $('#ib-img-preview').css({
-        width : $(window).width(),
-        height : $(window).height()
-    })
+$(window).load(function() {
+    $(window).resize();
 });
 
 $(window).scroll(function() {
@@ -19,16 +15,74 @@ $(window).scroll(function() {
 });
 
 $(function() {
-    var $gridWrapper = $('#grid-wrapper');
-    var $container = $('#grid-wrapper');
+    var gridWrapper = $('#grid-wrapper');
 
-    $container.isotope({
-        itemSelector: '.grid-item'
+    gridWrapper.imagesLoaded(function() {
+        gridWrapper.isotope({
+            itemSelector: '.grid-item'
+        });
+    });
+
+    /*
+     * We're creating a grid with 4 columns
+     * Each picture will take up 1, 2, 3 or 4 columns
+     * This function calculates the column width
+     * based on the grid wrapper width
+    */
+    calculateColumnWidth = function() {
+        var width;
+        if (gridWrapper.width() <= 320) {
+            width = Math.floor(gridWrapper.width());
+        } else if (gridWrapper.width() > 320 && gridWrapper.width() <= 640) {
+            width = Math.floor(gridWrapper.width() / 2);
+        } else if (gridWrapper.width() > 640 && gridWrapper.width() <= 960) {
+            width = Math.floor(gridWrapper.width() / 3);
+        } else {
+            width = Math.floor(gridWrapper.width() / 4);
+        }
+        return width;
+    };
+
+    setGridColumnWidth = function() {
+        var unitWidth = calculateColumnWidth() - 0;
+
+        gridWrapper.children('.width1').css({
+            width: unitWidth
+        });
+
+        gridWrapper.children('.width2').css({
+            width: unitWidth * 2
+        });
+
+        gridWrapper.children('.width3').css({
+            width: unitWidth * 3
+        });
+
+        gridWrapper.children('.width4').css({
+            width: unitWidth * 4
+        });
+
+        // get Isotope instance
+        var isotopeInstance = gridWrapper.data('isotope');
+        if(isotopeInstance){
+            isotopeInstance.masonry.columnWidth = unitWidth;
+            gridWrapper.isotope('reLayout');
+        }
+    };
+
+    $(window).resize(function() {
+        $('#grid-wrapper').css('margin-top', $('#bigimage').outerHeight());
+        $('#ib-img-preview').css({
+            width : $(window).width(),
+            height : $(window).height()
+        });
+
+        setGridColumnWidth();
     });
 
     Template = (function() {
         current = -1,
-        $gridItems = $gridWrapper.find('div.grid-item > a'),
+        $gridItems = gridWrapper.find('div.grid-item > a'),
         imgItemsCount = $gridItems.length,
         isAnimating = false,
 
@@ -61,13 +115,13 @@ $(function() {
                 };
             // preload large image
             $item.addClass('ib-loading');
-            preloadImage(largeSrc, function() {
+            preloadImage(largeSrc, function(img) {
                 // disable scrolling
                 $('body').addClass('disable-scroll');
                 $item.removeClass('ib-loading');
                 var hasImgPreview   = ($('#ib-img-preview').length > 0);
                 if (!hasImgPreview){
-                    $('#previewTmpl').tmpl(largeImageData).insertAfter($gridWrapper);
+                    $('#previewTmpl').tmpl(largeImageData).insertAfter(gridWrapper);
                 } else {
                     $('#ib-img-preview').children('img.ib-preview-img')
                                         .attr('src', largeSrc)
@@ -76,7 +130,7 @@ $(function() {
                                         // .text( description );
                 }
                 //get dimentions for the image, based on the windows size
-                var dim = getImageDim(largeSrc);
+                var dim = getImageDim(img);
                 $item.removeClass('ib-img-loading');
                 //set the returned values and show/animate preview
                 $('#ib-img-preview').css({
@@ -116,9 +170,12 @@ $(function() {
     },
 
     preloadImage = function(src, callback) {
-        $('<img/>').load(function() {
-            if (callback) callback.call();
-        }).attr('src', src);
+        var img = new Image();
+        img.src = src;
+
+        img.onload = function() {
+            callback(img);
+        };
     },
 
     initImgPreviewEvents = function() {
@@ -132,8 +189,8 @@ $(function() {
         });
         //resizing the window resizes the preview image
         $(window).bind('resize.ibTemplate', function(event) {
-            var $largeImg   = $preview.children('img.ib-preview-img'),
-                dim         = getImageDim( $largeImg.attr('src') );
+            var $largeImg   = $preview.children('.ib-preview-img');
+            var dim         = getImageDim($largeImg);
             $largeImg.css({
                 width   : dim.width,
                 height  : dim.height,
@@ -161,24 +218,22 @@ $(function() {
             largeSrc    = $item.children('img').data('largesrc');
             // description = $item.children('span').text();
 
-        preloadImage(largeSrc, function() {
+        preloadImage(largeSrc, function(img) {
             $loading.hide();
             //get dimentions for the image, based on the windows size
-            var dim = getImageDim( largeSrc );
+            var dim = getImageDim(img);
             $preview.children('img.ib-preview-img')
-                            .attr( 'src', largeSrc )
-                            .css({
-                width   : dim.width,
-                height  : dim.height,
-                left    : dim.left,
-                top     : dim.top
-                            })
-                            .end();
-                            // .find('span.ib-preview-descr')
-                            // .text( description );
-
-            // $gridWrapper.scrollTop($("#bigimage").outerHeight())
-                      // .scrollLeft($item.offset().left);
+                    .attr('src', largeSrc)
+                    .hide()
+                    .css({
+                        width   : dim.width,
+                        height  : dim.height,
+                        left    : dim.left,
+                        top     : dim.top
+                     }).fadeIn(400);
+                    // .end()
+                    // .find('span.ib-preview-descr')
+                    // .text( description );
 
             isAnimating = false;
         });
@@ -206,25 +261,25 @@ $(function() {
         $('body').removeClass('disable-scroll');
     },
 
-    getImageDim = function(src) {
-        var img = new Image();
-        img.src = src;
-
+    getImageDim = function(img) {
         var w_w = $(window).width(),
             w_h = $(window).height(),
             r_w = w_h / w_w,
-            i_w = img.width,
-            i_h = img.height,
+            i_w = img.naturalWidth,
+            i_h = img.naturalHeight,
             r_i = i_h / i_w,
             new_w, new_h,
             new_left, new_top;
 
-        if (r_w > r_i) {
-            new_h   = w_h;
-            new_w   = w_h / r_i;
-        } else {
-            new_h   = w_w * r_i;
-            new_w   = w_w;
+        if (i_w >= i_h) {
+            new_w = Math.floor(w_w);
+            // check if we're above max and reduce accordingly
+            new_h = Math.floor((i_h * w_w) / i_w);
+            // same here and below
+        }
+        else {
+            new_w = Math.floor((i_w * w_h) / i_h);
+            new_h = w_h;
         }
 
         return {
@@ -240,9 +295,3 @@ $(function() {
 
     Template.init();
 });
-
-var grid = {
-    init:function() {
-    }
-}
-

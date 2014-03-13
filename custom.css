@@ -60,14 +60,10 @@ a:hover {
     outline: none;
     margin:0px;
     margin-top:800px;
-    padding-left:5px;
-    padding-right:5px;
 }
 
 .grid-item a{
     float: left;
-    width: 310px;
-    height: 310px;
     position: relative;
     overflow: hidden;
     background: #000;
@@ -76,11 +72,10 @@ a:hover {
     -o-transition: all 0.2s ease-in-out;
     -ms-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
-    margin:5px;
 }
 .grid-item a.ib-loading,
 .grid-item a.ib-loading:hover{
-    background: #fff url(../images/ajax-loader.gif) no-repeat center center;
+    background: #fff url(./images/ajax-loader.gif) no-repeat center center;
     background-size: 31px 31px;
 }
 .grid-item a.ib-loading img,
@@ -92,6 +87,7 @@ a:hover {
     display: none;
 }
 .grid-item a img{
+    width: 100%;
     -webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out;
@@ -146,6 +142,7 @@ a:hover {
     position: absolute;
     top: 40px;
     display: none;
+    background: #000;
 }
 .ib-preview-descr{
     position: absolute;
@@ -168,7 +165,7 @@ a:hover {
     text-indent: -9000px;
 	opacity: 0.6;
 	z-index: 999;
-    background: transparent url(../images/nav.png) no-repeat top right;
+    background: transparent url(./images/nav.png) no-repeat top right;
 	right: 10px;
 	-webkit-user-select: none;
 	-khtml-user-select: none;
@@ -184,7 +181,7 @@ a:hover {
 .ib-close{
 	top: 7px;
 	right: 7px;
-	background: transparent url(../images/close.png) no-repeat center center;
+	background: transparent url(./images/close.png) no-repeat center center;
 	position: absolute;
 	width: 24px;
 	height: 24px;
@@ -200,7 +197,7 @@ a:hover {
     text-indent: -9000px;
     width: 60px;
     height: 60px;
-    background: #fff url(../images/ajax-loader.gif) no-repeat center center;
+    background: #fff url(./images/ajax-loader.gif) no-repeat center center;
     position: absolute;
     top: 50%;
     left: 50%;
