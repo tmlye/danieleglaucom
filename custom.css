@@ -54,7 +54,7 @@ a:hover {
 }
 
 #grid-wrapper.isotope {
-    max-width:none;
+    max-width:100%;
     width: 100%;
     overflow: hidden;
     outline: none;
@@ -63,6 +63,7 @@ a:hover {
 }
 
 .grid-item a{
+    width:100%;
     float: left;
     position: relative;
     overflow: hidden;
@@ -163,9 +164,9 @@ a:hover {
 	margin-top: -43px;
 	cursor: pointer;
     text-indent: -9000px;
-	opacity: 0.6;
+	opacity: 0.4;
 	z-index: 999;
-    background: transparent url(./images/nav.png) no-repeat top right;
+    background: transparent url(./images/nav2.png) no-repeat top right;
 	right: 10px;
 	-webkit-user-select: none;
 	-khtml-user-select: none;
@@ -181,12 +182,12 @@ a:hover {
 .ib-close{
 	top: 7px;
 	right: 7px;
-	background: transparent url(./images/close.png) no-repeat center center;
+	background: transparent url(./images/close2.png) no-repeat center center;
 	position: absolute;
 	width: 24px;
 	height: 24px;
 	cursor: pointer;
-	opacity: 0.2;
+	opacity: 0.3;
 	z-index: 999;
     text-indent: -9000px;
 }
@@ -220,52 +221,6 @@ a:hover {
     font-size:16px;
 }
 
-/**** Isotope Filtering ****/
-
-.isotope-item {
-  z-index: 2;
-}
-
-.isotope-hidden.isotope-item {
-  pointer-events: none;
-  z-index: 1;
-}
-
-/**** Isotope CSS3 transitions ****/
-
-.isotope,
-.isotope .isotope-item {
-  -webkit-transition-duration: 0.8s;
-     -moz-transition-duration: 0.8s;
-      -ms-transition-duration: 0.8s;
-       -o-transition-duration: 0.8s;
-          transition-duration: 0.8s;
-}
-
-.isotope {
-  -webkit-transition-property: height, width;
-     -moz-transition-property: height, width;
-      -ms-transition-property: height, width;
-       -o-transition-property: height, width;
-          transition-property: height, width;
-}
-
-.isotope .isotope-item {
-  -webkit-transition-property: -webkit-transform, opacity;
-     -moz-transition-property:    -moz-transform, opacity;
-      -ms-transition-property:     -ms-transform, opacity;
-       -o-transition-property:      -o-transform, opacity;
-          transition-property:         transform, opacity;
-}
-
-/**** disabling Isotope CSS3 transitions ****/
-
-.isotope.no-transition,
-.isotope.no-transition .isotope-item,
-.isotope .isotope-item.no-transition {
-  -webkit-transition-duration: 0s;
-     -moz-transition-duration: 0s;
-      -ms-transition-duration: 0s;
-       -o-transition-duration: 0s;
-          transition-duration: 0s;
+.grid-column {
+    width: 50%;
 }
