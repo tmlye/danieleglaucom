@@ -1,7 +1,3 @@
-$(document).ready(function() {
-    $(window).resize(); // TODO: remove this?
-});
-
 $(window).scroll(function() {
     // if ($(document).scrollTop() > 10) {
         // $(".conditional-top-nav").fadeIn(700);
@@ -206,9 +202,9 @@ $(window).scroll(function() {
 
             if (i_w >= i_h) {
                 new_w = Math.floor(w_w);
-                // check if we're above max and reduce accordingly
+                // TODO: check if we're above max and reduce accordingly
                 new_h = Math.floor((i_h * w_w) / i_w);
-                // same here and below
+                // TODO: same here and below
             }
             else {
                 new_w = Math.floor((i_w * w_h) / i_h);
@@ -230,6 +226,7 @@ $(window).scroll(function() {
         $(window).resize();
 
         loadGrid();
+        gridWrapper.isotope('layout');
     });
 
     $(window).resize(function() {
@@ -238,8 +235,6 @@ $(window).scroll(function() {
             width : $(window).width(),
             height : $(window).height()
         });
-
-        setGridColumnWidth();
     });
 
     loadGrid = function() {
@@ -247,7 +242,7 @@ $(window).scroll(function() {
             itemSelector: '.grid-item',
             layoutMode: 'masonry',
             masonry: {
-                columnWidth: '.grid-column'
+                columnWidth: '.width1'
             }
         });
 
@@ -255,7 +250,7 @@ $(window).scroll(function() {
             [
                 {description: "0", class: "width1"},
                 {description: "1", class: "width2"},
-                {description: "2", class: "width1 grid-column"},
+                {description: "2", class: "width1"},
                 {description: "3", class: "width1"},
                 {description: "4", class: "width1"},
                 {description: "5", class: "width1"},
@@ -285,9 +280,16 @@ $(window).scroll(function() {
                 {description: "29", class: "width2"},
                 {description: "30", class: "width2"}
             ];
-        var appendElements = [];
-        for(var i = 1; i <= 30; i++) {
-            var itemToAppend = $('#gridItemTmpl').tmpl(
+
+        var i = 1;
+        var lastTemplateGenerated;
+        loadNext = function() {
+            if(i > 1) {
+                // layout the previous image, by this point
+                // it was hopefully rendered already
+                gridWrapper.isotope('insert', lastTemplateGenerated);
+            }
+            lastTemplateGenerated = $('#gridItemTmpl').tmpl(
                     {
                         src: "images/large/" + i + ".jpg",
                         thumbSrc: "images/thumbs/" + i + ".jpg",
@@ -295,17 +297,24 @@ $(window).scroll(function() {
                         description: properties[i].description,
                         classes: properties[i].class
                     });
-            appendElements.push($(itemToAppend[0].outerHTML)[0]);
+            i++;
+            if(i <= 30) {
+                // Give control back to the browser,
+                // so it can load and render the image
+                setTimeout(loadNext, 50);
+            } else { // all images loaded
+                setTimeout(function(){
+                    // layout the last image
+                    gridWrapper.isotope('insert', lastTemplateGenerated);
+                }, 50);
+
+                // initialize image previewing
+                imagePreviewer();
+                $(window).resize();
+            }
         }
 
-        gridWrapper.isotope('insert', appendElements);
-        // gridWrapper.isotope('layoutItems');
-        // var evt = document.createEvent('UIEvents');
-        // evt.initUIEvent('resize', true, false,window,0);
-        // window.dispatchEvent(evt);
-        // $(window).resize();
-        imagePreviewer();
-        $(window).resize();
+        loadNext();
     };
 
     /*
@@ -347,6 +356,8 @@ $(window).scroll(function() {
             width: unitWidth * 4
         });
 
-       // gridWrapper.isotope('layout');
+        if(gridWrapper.data('isotope')) {
+            gridWrapper.isotope('layout');
+        }
     };
 })();
