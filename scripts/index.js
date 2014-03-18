@@ -50,7 +50,7 @@ $(window).scroll(function() {
                 $item.removeClass('ib-loading');
                 var hasImgPreview   = ($('#ib-img-preview').length > 0);
                 if (!hasImgPreview){
-                    $('#previewTmpl').tmpl(largeImageData).insertAfter(gridWrapper);
+                    $(Handlebars.templates.imageViewer(largeImageData)).insertAfter(gridWrapper);
                 } else {
                     $('#ib-img-preview').children('img.ib-preview-img')
                                         .attr('src', largeSrc)
@@ -287,16 +287,17 @@ $(window).scroll(function() {
             if(i > 1) {
                 // layout the previous image, by this point
                 // it was hopefully rendered already
-                gridWrapper.isotope('insert', lastTemplateGenerated);
+                gridWrapper.isotope('insert', $(lastTemplateGenerated));
             }
-            lastTemplateGenerated = $('#gridItemTmpl').tmpl(
-                    {
+            var context = {
                         src: "images/large/" + i + ".jpg",
                         thumbSrc: "images/thumbs/" + i + ".jpg",
                         alt: "Image " + i,
                         description: properties[i].description,
                         classes: properties[i].class
-                    });
+            };
+            lastTemplateGenerated = Handlebars.templates.gridItem(context);
+
             i++;
             if(i <= 30) {
                 // Give control back to the browser,
@@ -305,7 +306,7 @@ $(window).scroll(function() {
             } else { // all images loaded
                 setTimeout(function(){
                     // layout the last image
-                    gridWrapper.isotope('insert', lastTemplateGenerated);
+                    gridWrapper.isotope('insert', $(lastTemplateGenerated));
                 }, 50);
 
                 // initialize image previewing
