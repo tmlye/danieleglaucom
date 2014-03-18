@@ -216,23 +216,59 @@ a:hover {
 }
 
 #footer {
-    margin-top:50px;
-    text-align:center;
-    font-size:16px;
+    margin-top: 50px;
+    text-align: center;
+    font-size: 16px;
 }
 
-.width1 {
-    width:33.333%;
+/*
+ * We're creating a grid with 4 columns
+ * Each picture will take up 1, 2, 3 or 4 columns
+ * We're adjusting the number of columns according
+ * to the screen size
+*/
+/* one column */
+@media all and (max-width: 320px){
+    .width1, .width2, .width3, .width4{
+        width: 100%;
+    }
 }
 
-.width2 {
-    width:66.666%;
+/* two columns */
+@media all and (min-width: 321px) and (max-width: 640px) {
+    .width1{
+        width: 50%;
+    }
+    .width2, .width3, .width4{
+        width: 100%;
+    }
 }
 
-.width3 {
-    /* width:66%; */
+/* three columns */
+@media all and (min-width: 641px) and (max-width: 960px) {
+    .width1{
+        width: 33.33333%;
+    }
+    .width2{
+        width: 66.66666%;
+    }
+    .width3, .width4{
+        width: 100%
+    }
 }
 
-.width4 {
-    width:100%;
+/* four columns */
+@media all and (min-width: 961px) {
+    .width1{
+        width: 25%;
+    }
+    .width2{
+        width: 50%;
+    }
+    .width3{
+        width: 75%;
+    }
+    .width4{
+        width: 100%;
+    }
 }

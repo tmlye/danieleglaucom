@@ -316,48 +316,4 @@ $(window).scroll(function() {
 
         loadNext();
     };
-
-    /*
-     * We're creating a grid with 4 columns
-     * Each picture will take up 1, 2, 3 or 4 columns
-     * This function calculates the column width
-     * based on the grid wrapper width
-    */
-    calculateColumnWidth = function() {
-        var width;
-        if (gridWrapper.width() <= 320) {
-            width = Math.floor(gridWrapper.width());
-        } else if (gridWrapper.width() > 320 && gridWrapper.width() <= 640) {
-            width = Math.floor(gridWrapper.width() / 2);
-        } else if (gridWrapper.width() > 640 && gridWrapper.width() <= 960) {
-            width = Math.floor(gridWrapper.width() / 3);
-        } else {
-            width = Math.floor(gridWrapper.width() / 4);
-        }
-        return width;
-    };
-
-    setGridColumnWidth = function() {
-        var unitWidth = calculateColumnWidth() - 0;
-
-        gridWrapper.children('.width1').css({
-            width: unitWidth
-        });
-
-        gridWrapper.children('.width2').css({
-            width: unitWidth * 2
-        });
-
-        gridWrapper.children('.width3').css({
-            width: unitWidth * 3
-        });
-
-        gridWrapper.children('.width4').css({
-            width: unitWidth * 4
-        });
-
-        if(gridWrapper.data('isotope')) {
-            gridWrapper.isotope('layout');
-        }
-    };
 })();
