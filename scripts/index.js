@@ -1,29 +1,37 @@
-$(window).scroll(function() {
-    // if ($(document).scrollTop() > 10) {
-        // $(".conditional-top-nav").fadeIn(700);
-    // } else {
-        // $(".conditional-top-nav").fadeOut(700);
-    // }
-});
-
-(function() {
+(function(window) {
     var gridWrapper = $('#grid-wrapper');
 
-    var imagePreviewer = function() {
+    window.onload = function() {
+        $(window).resize();
+
+        loadGrid();
+        imagePreviewer();
+        gridWrapper.isotope('layout');
+    };
+
+    window.onresize = function() {
+        $('#grid-wrapper').css('margin-top', $('#bigimage').outerHeight());
+        $('#ib-img-preview').css({
+            width : $(window).width(),
+            height : $(window).height()
+        });
+    };
+
+    function imagePreviewer() {
         var current = -1;
         var isAnimating = false;
         var $gridItems = gridWrapper.find('div.grid-item > a');
         var imgItemsCount = $gridItems.length;
 
-        var init = function() {
+        function init() {
             $gridItems.addClass('gridItem');
             $gridItems.bind('click.ibTemplate', function(ev) {
                 openItem($(this));
                 return false;
             });
-        };
+        }
 
-        var openItem = function($item) {
+        function openItem($item) {
             if (isAnimating){
                 return false;
             }
@@ -33,9 +41,9 @@ $(window).scroll(function() {
                 isAnimating = false;
             });
 
-        };
+        }
 
-        var loadImgPreview = function($item, callback) {
+        function loadImgPreview($item, callback) {
             var largeSrc = $item.children('img').data('largesrc'),
                 // description     = $item.children('span').text(),
                 largeImageData = {
@@ -96,18 +104,18 @@ $(window).scroll(function() {
                     initImgPreviewEvents();
                 }
             });
-        };
+        }
 
-        var preloadImage = function(src, callback) {
+        function preloadImage(src, callback) {
             var img = new Image();
             img.src = src;
 
             img.onload = function() {
                 callback(img);
             };
-        };
+        }
 
-        var initImgPreviewEvents = function() {
+        function initImgPreviewEvents() {
             var $preview = $('#ib-img-preview');
             $preview.find('span.ib-nav-prev').bind('click.ibTemplate', function( event ) {
                 navigate('prev');
@@ -127,10 +135,10 @@ $(window).scroll(function() {
                     top     : dim.top
                 })
             });
-        };
+        }
 
         // navigate the image items in fullscreen mode
-        var navigate = function(dir) {
+        function navigate(dir) {
             if(isAnimating) return false;
             isAnimating = true;
             var $preview = $('#ib-img-preview'),
@@ -166,9 +174,9 @@ $(window).scroll(function() {
 
                 isAnimating = false;
             });
-        };
+        }
 
-        var closeImgPreview = function() {
+        function closeImgPreview() {
             if( isAnimating ) return false;
             isAnimating = true;
 
@@ -188,9 +196,9 @@ $(window).scroll(function() {
                                 } );
                             });
             $('body').removeClass('disable-scroll');
-        };
+        }
 
-        var getImageDim = function(img) {
+        function getImageDim(img) {
             var w_w = $(window).width(),
                 w_h = $(window).height(),
                 r_w = w_h / w_w,
@@ -217,27 +225,13 @@ $(window).scroll(function() {
                 left    : (w_w - new_w) / 2,
                 top     : (w_h - new_h) / 2
             };
-        };
+        }
 
         init();
-    };
+    }
 
-    $(window).load(function() {
-        $(window).resize();
-
-        loadGrid();
-        gridWrapper.isotope('layout');
-    });
-
-    $(window).resize(function() {
-        $('#grid-wrapper').css('margin-top', $('#bigimage').outerHeight());
-        $('#ib-img-preview').css({
-            width : $(window).width(),
-            height : $(window).height()
-        });
-    });
-
-    loadGrid = function() {
+    function loadGrid() {
+        // initialize isotope
         gridWrapper.isotope({
             itemSelector: '.grid-item',
             layoutMode: 'masonry',
@@ -281,40 +275,24 @@ $(window).scroll(function() {
                 {description: "30", class: "width2"}
             ];
 
-        var i = 1;
-        var lastTemplateGenerated;
-        loadNext = function() {
-            if(i > 1) {
-                // layout the previous image, by this point
-                // it was hopefully rendered already
-                gridWrapper.isotope('insert', $(lastTemplateGenerated));
-            }
+        for(var i = 1; i <= 30; i++) {
             var context = {
-                        src: "images/large/" + i + ".jpg",
-                        thumbSrc: "images/thumbs/" + i + ".jpg",
-                        alt: "Image " + i,
-                        description: properties[i].description,
-                        classes: properties[i].class
+                id: "gridItem" + i,
+                src: "images/large/" + i + ".jpg",
+                thumbSrc: "images/thumbs/" + i + ".jpg",
+                alt: "Image " + i,
+                description: properties[i].description,
+                classes: properties[i].class
             };
-            lastTemplateGenerated = Handlebars.templates.gridItem(context);
-
-            i++;
-            if(i <= 30) {
-                // Give control back to the browser,
-                // so it can load and render the image
-                setTimeout(loadNext, 50);
-            } else { // all images loaded
-                setTimeout(function(){
-                    // layout the last image
-                    gridWrapper.isotope('insert', $(lastTemplateGenerated));
-                }, 50);
-
-                // initialize image previewing
-                imagePreviewer();
-                $(window).resize();
-            }
+            var lastTemplateGenerated = Handlebars.templates.gridItem(context);
+            gridWrapper.append(lastTemplateGenerated);
+            // subscribe to thumbnail load events
+            var imgLoad = imagesLoaded("#gridItem" + i);
+            imgLoad.on('progress', function(instance, image) {
+                // add the new item to isotope once the thumb is loaded
+                var gridItem = image.img.parentNode.parentNode;
+                gridWrapper.isotope('appended', gridItem);
+            });
         }
-
-        loadNext();
-    };
-})();
+    }
+})(window);
