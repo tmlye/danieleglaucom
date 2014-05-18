@@ -242,7 +242,7 @@
 
         var properties =
             [
-                {description: "0", class: "width1"},
+                {description: "not used", class: "width1"},
                 {description: "1", class: "width2"},
                 {description: "2", class: "width1"},
                 {description: "3", class: "width1"},
@@ -291,7 +291,7 @@
             imgLoad.on('progress', function(instance, image) {
                 // add the new item to isotope once the thumb is loaded
                 var gridItem = image.img.parentNode.parentNode;
-                gridWrapper.isotope('appended', gridItem);
+                gridWrapper.isotope('insert', gridItem);
             });
         }
     }
