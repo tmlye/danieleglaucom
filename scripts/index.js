@@ -242,7 +242,7 @@
 
         var properties =
             [
-                {description: "not used", class: "width1"},
+                {description: "0", class: "width1"},
                 {description: "1", class: "width2"},
                 {description: "2", class: "width1"},
                 {description: "3", class: "width1"},
@@ -272,10 +272,13 @@
                 {description: "27", class: "width1"},
                 {description: "28", class: "width1"},
                 {description: "29", class: "width2"},
-                {description: "30", class: "width2"}
+                {description: "30", class: "width2"},
+                {description: "31", class: "width2"},
+                {description: "32", class: "width2"},
+                {description: "33", class: "width2"}
             ];
 
-        for(var i = 1; i <= 30; i++) {
+        for(var i = 0; i <= 33; i++) {
             var context = {
                 id: "gridItem" + i,
                 src: "images/large/" + i + ".jpg",
