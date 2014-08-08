@@ -216,9 +216,11 @@ a:hover {
 }
 
 .disable-scroll {
-    height: 100%;
-    overflow: hidden;
-    position: fixed;
+    height: 100%!important;
+    width: 100%!important;
+    position: fixed!important;
+    top: 0!important;
+    bottom: 0!important;
 }
 
 #footer {

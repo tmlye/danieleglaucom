@@ -60,8 +60,6 @@
             // preload large image
             $item.addClass('ib-loading');
             preloadImage(largeSrc, function(img) {
-                // disable scrolling
-                $('body').addClass('disable-scroll');
                 $item.removeClass('ib-loading');
                 var hasImgPreview   = ($('#ib-img-preview').length > 0);
                 if (!hasImgPreview){
@@ -107,6 +105,10 @@
                     });
                 });
 
+                // disable scrolling
+                $('#ib-img-preview').addClass('disable-scroll');
+                $('body').width($('body').width());
+                $('body').css('overflow', 'hidden');
                 if (!hasImgPreview) {
                     initImgPreviewEvents();
                 }
@@ -202,7 +204,8 @@
                                         $(this).fadeOut(function() {isAnimating = false;});
                                 } );
                             });
-            $('body').removeClass('disable-scroll');
+            $('#ib-img-preview').removeClass('disable-scroll');
+            $('body').css('overflow', 'auto');
         }
 
         function getImageDim(img) {
