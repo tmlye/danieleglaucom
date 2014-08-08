@@ -136,6 +136,9 @@ a:hover {
 .grid-item a:hover{
     background-size: 100% 100%;
 }
+.text-item{
+    padding:10px;
+}
 .sort-id{
     display:none;
 }
@@ -215,6 +218,7 @@ a:hover {
 .disable-scroll {
     height: 100%;
     overflow: hidden;
+    position: fixed;
 }
 
 #footer {

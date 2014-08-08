@@ -7,7 +7,14 @@
         loadGrid();
         imagePreviewer();
         gridWrapper.isotope('layout');
+
+        // nudge if user doesn't scroll
+
     };
+
+    // function scrollNudge() {
+        // if (userscrolled past 5%) return;
+    // }
 
     window.onresize = function() {
         $('#grid-wrapper').css('margin-top', $('#bigimage').outerHeight());
@@ -248,19 +255,19 @@
         var properties =
             [
                 {description: "0", class: "width1", sortId: "0"},
-                {description: "1", class: "width2", sortId: "1"},
+                {description: "1", class: "width1", sortId: "1"},
                 {description: "2", class: "width1", sortId: "2"},
                 {description: "3", class: "width1", sortId: "3"},
                 {description: "4", class: "width1", sortId: "4"},
                 {description: "5", class: "width1", sortId: "5"},
                 {description: "6", class: "width1", sortId: "6"},
-                {description: "7", class: "width2", sortId: "7"},
+                {description: "7", class: "width1", sortId: "7"},
                 {description: "8", class: "width1", sortId: "8"},
                 {description: "9", class: "width1", sortId: "9"},
                 {description: "10", class: "width1", sortId: "10"},
-                {description: "11", class: "width2", sortId: "11"},
-                {description: "12", class: "width2", sortId: "12"},
-                {description: "13", class: "width2", sortId: "13"},
+                {description: "11", class: "width1", sortId: "11"},
+                {description: "12", class: "width1", sortId: "12"},
+                {description: "13", class: "width1", sortId: "13"},
                 {description: "14", class: "width1", sortId: "14"},
                 {description: "15", class: "width1", sortId: "15"},
                 {description: "16", class: "width1", sortId: "16"},
@@ -268,22 +275,16 @@
                 {description: "18", class: "width1", sortId: "18"},
                 {description: "19", class: "width1", sortId: "19"},
                 {description: "20", class: "width1", sortId: "20"},
-                {description: "21", class: "width2", sortId: "21"},
-                {description: "22", class: "width2", sortId: "22"},
+                {description: "21", class: "width1", sortId: "21"},
+                {description: "22", class: "width1", sortId: "22"},
                 {description: "23", class: "width1", sortId: "23"},
                 {description: "24", class: "width1", sortId: "24"},
                 {description: "25", class: "width1", sortId: "25"},
                 {description: "26", class: "width1", sortId: "26"},
-                {description: "27", class: "width1", sortId: "27"},
-                {description: "28", class: "width1", sortId: "28"},
-                {description: "29", class: "width2", sortId: "29"},
-                {description: "30", class: "width2", sortId: "30"},
-                {description: "31", class: "width2", sortId: "31"},
-                {description: "32", class: "width2", sortId: "32"},
-                {description: "33", class: "width2", sortId: "33"}
+                {description: "27", class: "width1", sortId: "27"}
             ];
 
-        for(var i = 0; i <= 33; i++) {
+        for(var i = 0; i <= 27; i++) {
             var context = {
                 id: "gridItem" + i,
                 sortId: properties[i].sortId,
