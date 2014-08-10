@@ -2,21 +2,19 @@ body {
     background:#000;
     color: #404040;
     margin-bottom:50px;
+    font-family: 'Open Sans', sans-serif;
 }
-a {
-    color: #E1AA5D;
+#contact h2 {
+    color:#DDD;
 }
-a:hover {
-    color: #F39D21;
+#contact a {
+    color: #AAA;
+    background:#000;
+    float:none;
+}
+#contact a:hover {
+    color: #404040;
     text-decoration: none;
-}
-.page-header {
-    font-size: 24px;
-}
-
-.textrow {
-    padding-top:50px;
-    font-size:16px;
 }
 
 #bigimage {
@@ -36,6 +34,7 @@ a:hover {
 }
 
 #title h1 {
+    font-family: 'Roboto', sans-serif;
     font-size:40px;
     letter-spacing:0.5em;
     width:40%;
@@ -59,7 +58,7 @@ a:hover {
     float: left;
     position: relative;
     overflow: hidden;
-    background: #FFF;
+    background: #000;
     -webkit-transition: all 0.2s ease-in-out;
     -moz-transition: all 0.2s ease-in-out;
     -o-transition: all 0.2s ease-in-out;
@@ -214,12 +213,6 @@ a:hover {
     position: fixed!important;
     top: 0!important;
     bottom: 0!important;
-}
-
-#footer {
-    margin-top: 50px;
-    text-align: center;
-    font-size: 16px;
 }
 
 /*
