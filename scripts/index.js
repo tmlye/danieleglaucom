@@ -43,7 +43,7 @@
                 return false;
             }
 
-            current = $item.index('.gridItem');
+            current = parseInt($item[0].nextElementSibling.innerHTML);
             loadImgPreview($item, function() {
                 isAnimating = false;
             });
