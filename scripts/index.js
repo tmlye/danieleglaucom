@@ -284,10 +284,16 @@
                 {description: "", class: "width1", sortId: "24"},
                 {description: "", class: "width1", sortId: "25"},
                 {description: "", class: "width1", sortId: "26"},
-                {description: "", class: "width1", sortId: "27"}
+                {description: "", class: "width1", sortId: "27"},
+                {description: "", class: "width1", sortId: "28"},
+                {description: "", class: "width1", sortId: "29"},
+                {description: "", class: "width1", sortId: "30"},
+                {description: "", class: "width1", sortId: "31"},
+                {description: "", class: "width1", sortId: "32"},
+                {description: "", class: "width1", sortId: "33"}
             ];
 
-        for(var i = 0; i <= 27; i++) {
+        for(var i = 0; i <= 33; i++) {
             var context = {
                 id: "gridItem" + i,
                 sortId: properties[i].sortId,
